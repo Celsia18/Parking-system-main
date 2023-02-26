@@ -1,0 +1,44 @@
+.places {
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+
+.place {
+    width: 40px;
+    height: 50px;
+    background: #27b918;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.place.booked {
+    background: #c10004;
+}
+
+
+.descr{
+    display:none;
+    padding:10px;
+    background: #1d63a9;
+    -moz-box-shadow:0 5px 5px rgba(0,0,0,0.3);
+    -webkit-box-shadow:0 5px 5px rgba(0,0,0,0.3);
+    box-shadow:0 5px 5px rgba(0,0,0,0.3);
+}
+
+.place:hover .descr{
+    display:block;
+    position:absolute;
+    top: 80%;
+    right: 50%;
+    z-index: 999;
+    width:200px;
+}
+
+.descr a:hover {
+    color: white;
+}

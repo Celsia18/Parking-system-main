@@ -1,0 +1,19 @@
+{% extends 'main/header.html' %}
+{% load static %}
+{% block content %}
+<form action="." method="POST" enctype="multipart/form-data" class="form" style="font-family: Quicksand, sans-serif;background-color: rgba(44,40,52,0.9);max-width: 320px;">
+    {% csrf_token %}
+    <h1 class="head" style="color:  #dfe8ee;">Регистрация</h1>
+    <div><img id="image" class="rounded img-fluid" style="width: auto;height: auto;margin-left: 40px;" src="/static/main/img/geely.png" /></div>
+    <div class="form-inputs">
+        {{ user_form }}
+        {{ profile_form }}
+    </div>
+    <div class="form-group mb-3"></div> <button id="butonas" class="btn btn-light" style="width: 100%;height: 100%;margin-bottom: 10px;background-color: rgb(171,170,123);" type="submit">Зарегистрироваться</button>
+</form>
+<script src="static/main/css/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script>
+    $('input[name="birthdate"]').attr("type", "date")
+</script>
+{% endblock %}

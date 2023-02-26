@@ -1,0 +1,50 @@
+html, body {
+    min-height: 100%;
+}
+body {
+    background: url('/static/main/img/login-fon.png') 0 0 / cover no-repeat fixed;
+}
+
+select {
+    max-width: 200px;
+    width: 100%;
+    color: black;
+    padding: 5px;
+}
+
+.form-input {
+  background: none;
+  border: none;
+  border-bottom: 1px solid #434a52;
+  border-radius: 0;
+  box-shadow: none;
+  outline: none;
+  color: inherit;
+}
+
+.form-input:focus {
+    background: none;
+    box-shadow: none;
+    outline: none;
+    color: inherit;
+}
+
+.form-inputs {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.select-address {
+    max-width: 80%;
+    margin: 0 auto;
+    display: block;
+}
+
+.user-parking-place {
+    margin: 50px 0 100px;
+}
+
+.question-form {
+    margin: 50px 0;
+}

@@ -1,0 +1,64 @@
+{% extends 'main/header.html' %}
+{% block content %}
+<form action="." method="POST" enctype="multipart/form-data" class="form" style="font-family: Quicksand, sans-serif;background-color: rgba(44,40,52,0.9);">
+    <h3 class="head" style="color:  #dfe8ee;">Профиль {{ request.user.username }}</h3>
+    {% csrf_token %}
+    {{ user_form }}
+    {{ profile_form }}
+
+    <div class="form-group mb-3"></div> <button id="butonas" class="btn btn-light" style="width: 100%;height: 100%;margin-bottom: 10px;background-color: rgb(171,170,123);" type="submit">Сохранить</button>
+    <div class="form-group mb-3"></div> <a href="{% url 'password_change' %}" id="butonas" class="btn btn-light" style="width: 100%;height: 100%;margin-bottom: 10px;background-color: rgb(171,170,123);">Изменить пароль</a>
+    <div class="form-group mb-3"></div> <a href="{% url 'logout' %}" id="butonas" class="btn btn-light" style="width: 100%;height: 100%;margin-bottom: 10px;background-color: rgb(171,170,123);">Выйти</a>
+    <div class="form-group mb-3"></div> <a href="{% url 'remove' user.id %}" id="butonas" class="btn btn-light remove-account" style="width: 100%;height: 100%;margin-bottom: 10px;background-color: rgb(171,170,123);">Удалить аккаунт</a>
+
+
+</form>
+
+<form action="update_preferences/" method="POST" class="form" style="font-family: Quicksand, sans-serif;background-color: rgba(44,40,52,0.9);margin-top: 40px;">
+    <h3 class="head" style="color:  #dfe8ee;">Предпочтения к парковочному месту</h3>
+    {% csrf_token %}
+    {{ preferences_form.as_p }}
+    <div class="form-group mb-3"></div> <button id="butonas" class="btn btn-light" style="width: 100%;height: 100%;margin-bottom: 10px;background-color: rgb(171,170,123);" type="submit">Сохранить</button>
+</form>
+{% if user.profile.booked_place %}
+<div class="form user-parking-place" style="font-family: Quicksand, sans-serif;background-color: rgba(44,40,52,0.9);">
+    <h3 class="head">Ваше парковочное место</h3>
+    <h4>Номер места: {{ user.profile.booked_place.number }}</h4>
+    <h4>Паркинг: {{ user.profile.booked_place.parking.address }}</h4>
+    <div class="form-group mb-3"></div> <a href="{% url 'stop' user.profile.id %}" id="butonas" class="btn btn-light" style="width: 100%;height: 100%;margin-bottom: 10px;background-color: rgb(171,170,123);">Отменить бронь</a>
+
+</div>
+{% endif %}
+<form action="/question/" method="POST" class="form question-form" style="font-family: Quicksand, sans-serif;background-color: rgba(44,40,52,0.9);">
+    <h3 class="head">Задать вопрос</h3>
+    {% csrf_token %}
+    {{ question_form }}
+    <div class="form-group mb-3"></div> <button id="butonas" class="btn btn-light" style="width: 100%;height: 100%;margin-bottom: 10px;background-color: rgb(171,170,123);" type="submit">Отправить</button>
+</form>
+<script>
+    {#$('input[name="birthdate"]').attr("type", "date")#}
+
+    $('.preferences-any').click(function(){
+        if ($(this).is(':checked')){
+            $("input:checkbox").prop("checked", false)
+            $(this).prop("checked", true)
+            $("select option:first-child").prop("selected", true)
+        }
+    });
+
+    $(".for-disabled").click(function() {
+        $('.preferences-any').prop("checked", false)
+    })
+
+    $('select').on('change', function() {
+        $('.preferences-any').prop("checked", false)
+    });
+
+    $(".remove-account").click(function() {
+        var req = confirm("Вы уверены?");
+        if (!req){
+            event.preventDefault();
+        }
+    })
+</script>
+{% endblock %}
